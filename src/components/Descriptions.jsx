@@ -5,7 +5,7 @@ import { MdCompress, MdOutlineWaterDrop } from "react-icons/md";
 import { BsFillSunriseFill, BsFillSunsetFill } from "react-icons/bs";
 import { formatToLocalTime } from "../services/WeatherService";
 
-const Descriptions = ({ weather, units}) => {
+const Descriptions = ({ weather, units, card}) => {
   const tempUnit = units === "metric" ? "°C" : "°F";
   const windUnit = units === "metric" ? "m/s" : "m/h";
 
@@ -67,25 +67,14 @@ const Descriptions = ({ weather, units}) => {
       unit: ' PM',
     },
   ];
-  const temp=weather.temp;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-4 ">
       {cards.map(({ id, icon, title, data, unit }) => {
-        const threshold = units === "metric" ? 20 : 68;
-        const temperature = parseFloat(temp);
-
-        let temperatureClass = "";
-        if (temperature < threshold) {
-          temperatureClass = "bg-blue-500";     // Change to blue if temperature is less than 20
-        } else if (temperature >= threshold) {
-          temperatureClass = "bg-red-500";      // Change to red if temperature is 20 or more
-        }
-
         return (
             <div
               key={id}
-              className={`p-4 rounded-lg shadow text-center ${temperatureClass}`}
+              className={`p-4 rounded-lg shadow text-center ${card}`}
             >
               <div className="flex flex-col items-center justify-between">
                 <div className="text-2xl">{`${data} ${unit}`}</div>

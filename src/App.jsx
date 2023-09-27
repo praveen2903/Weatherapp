@@ -13,6 +13,8 @@ function App() {
   const [bg, setBg] = useState(hotBg);
   const [color,setColor]=useState("text-black");
   const [searchNotFound, setSearchNotFound] = useState(false);
+  const [card,setCard]=useState("bg-red-500");
+  const [top,setTop]=useState("text-white")
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -25,10 +27,14 @@ function App() {
         if (data.temp <= threshold){
           setBg(coldBg);
           setColor("text-white");
+          setCard("bg-blue-500");
+          setTop("text-black")
         } 
         else {
           setBg(hotBg);
           setColor("text-black")
+          setCard("bg-red-500")
+          setTop("text-white")
         }
 
         // Reset search not found if data is found
@@ -67,7 +73,7 @@ function App() {
             </div>
           ) : weather ? (
             <div className="container mx-auto p-4">
-              <TopButtons setCity={setCity} weather={weather} units={units}/>
+              <TopButtons setCity={setCity} top={top} />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                 <input
                   onKeyDown={enterKeyPressed}
@@ -106,7 +112,7 @@ function App() {
               </div>
 
               <div className="mt-8">
-                <Descriptions weather={weather} units={units} />
+                <Descriptions weather={weather} units={units} card={card} />
               </div>
             </div>
           ) : (

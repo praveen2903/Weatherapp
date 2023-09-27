@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai';
 
-function TopButtons({ setCity, weather, units }) {
+function TopButtons({ setCity, top }) {
     const [toggle,setToggle]=useState(false);
-    const temp=weather.temp;
  
     const cities = [
         {
@@ -46,19 +45,10 @@ function TopButtons({ setCity, weather, units }) {
             </div>
             <div className='hidden md:flex items-center justify-around gap-20'>
                 {cities.map((city) => {
-                    const threshold = units === "metric" ? 20 : 68;
-                    const temperature = parseFloat(temp);
-            
-                    let temperatureClass = "";
-                    if (temperature < threshold) {
-                      temperatureClass = "text-black";     // Change to blue if temperature is less than 20
-                    } else if (temperature >= threshold) {
-                      temperatureClass = "text-white";      // Change to red if temperature is 20 or more
-                    }
                     return(
                         <button 
                             key={city.id} 
-                            className={`text-lg font-medium ${temperatureClass}`}
+                            className={`text-lg font-medium ${top}`}
                             onClick={() => handleCityClick(city.title)} 
                         >
                             {city.title}
