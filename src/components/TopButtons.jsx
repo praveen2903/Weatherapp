@@ -89,7 +89,7 @@ function TopButtons({ setCity, top }) {
                 </button>
 
                 {toggle && (
-                    <div className={`duration-300 p-8 md:hidden font-serif left-[60%] right-0 fit-content text-white fixed overflow bg-black ${toggle ? 'left-[0]': 'left-[-100%]'}`}>
+                    <div className={`duration-300 p-8 md:hidden font-serif left-[50%] right-0 fit-content text-white fixed overflow bg-black ${toggle ? 'left-[0]': 'left-[-100%]'}`}>
                         {cities.map((city) => (
                             <button
                                 key={city.id}
