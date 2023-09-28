@@ -75,7 +75,7 @@ function TopButtons({ setCity, top }) {
                     )
                 })}
             </div>
-            <div className='relative md:hidden' ref={menuRef}>
+            <div className='relative md:hidden' ref={menuRef}  style={{ position: 'fixed', top: '0', right: '0', maxHeight: '300px', overflowY: 'auto', background: '#000' }}>
                 <button
                     onClick={() => setToggle(!toggle)}
                     className='text-white text-2xl md:hidden block'
