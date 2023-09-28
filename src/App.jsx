@@ -14,7 +14,7 @@ function App() {
   const [color,setColor]=useState("text-black");
   const [searchNotFound, setSearchNotFound] = useState(false);
   const [card,setCard]=useState("bg-red-500");
-  const [top,setTop]=useState("text-white")
+  const [top,setTop]=useState("text-white");
 
   useEffect(() => {
     const fetchWeatherData = async () => {

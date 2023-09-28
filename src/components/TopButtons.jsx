@@ -1,9 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai';
 
 function TopButtons({ setCity, top }) {
     const [toggle,setToggle]=useState(false);
- 
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        // Function to handle click outside menu
+        const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setToggle(false);
+        }
+        };
+
+        // Attach the event listener
+        document.addEventListener('mousedown', handleClickOutside);
+
+        // Clean up the event listener when the component is unmounted
+        return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const cities = [
         {
             id:1,
@@ -33,6 +51,7 @@ function TopButtons({ setCity, top }) {
 
     const handleCityClick = (city) => {
         setCity(city);
+        setToggle(!toggle)
     };
 
 
@@ -56,7 +75,7 @@ function TopButtons({ setCity, top }) {
                     )
                 })}
             </div>
-            <div className='relative md:hidden'>
+            <div className='relative md:hidden' ref={menuRef}>
                 <button
                     onClick={() => setToggle(!toggle)}
                     className='text-white text-2xl md:hidden block'
@@ -70,7 +89,7 @@ function TopButtons({ setCity, top }) {
                 </button>
 
                 {toggle && (
-                    <div className={`duration-300 md:hidden w-full h-screen text-white fixed bg-black top-[92px] ${toggle ? 'left-[0]': 'left-[-100%]'}`}>
+                    <div className={`duration-300 p-8 md:hidden font-serif left-[60%] right-0 fit-content text-white fixed overflow bg-black ${toggle ? 'left-[0]': 'left-[-100%]'}`}>
                         {cities.map((city) => (
                             <button
                                 key={city.id}
