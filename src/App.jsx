@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getFormattedWeatherData } from "./services/WeatherService";
 import TopButtons from "./components/TopButtons";
 import './App.css'
+import Time from "./components/Time";
 
 function App() {
   const [city, setCity] = useState("Guntur");
@@ -29,12 +30,14 @@ function App() {
           setColor("text-white");
           setCard("bg-blue-500");
           setTop("text-black")
+          
         } 
         else {
           setBg(hotBg);
           setColor("text-black")
           setCard("bg-red-500")
           setTop("text-white")
+  
         }
 
         // Reset search not found if data is found
@@ -100,8 +103,10 @@ function App() {
                   alt="weatherIcon"
                   className="mx-auto mt-2"
                 />
-                <h3 className={`text-xl ${color}`}>{weather.description}</h3>
+                <h3 className={`text-xl font-bold ${color}`}>{weather.description}</h3>
               </div>
+
+              <Time weather={weather} color={color}/>
 
               <div className="mt-8 text-center">
                 <h1 className={`text-5xl ${color}`}>

@@ -51,4 +51,3 @@ const formatToLocalTime = (
 
 export { getFormattedWeatherData };
 export {formatToLocalTime}
-
