@@ -19,7 +19,7 @@ export default function Time({weather, timecolor}) {
   return (
     <div>
         <div className="flex items-center justify-center my-6">
-            <p className={`text-xl sm:text-3xl font-semibold ${timecolor}`}>
+            <p className={`text-[15px] sm:text-3xl font-semibold ${timecolor}`}>
               {date} ,{time}{" "}
             </p>
       </div>
