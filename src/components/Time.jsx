@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from 'react';
 
-export default function Time({ weather, timecolor }) {
+export default function Time({ weather }) {
   const [mytime, setMyTime] = useState('');
 
   useEffect(() => {
     const updateClock = () => {
       const selectedDate = new Date(Date.now() + weather.timezone * 1000 - 5.5 * 60 * 60 * 1000);
 
-      const time = selectedDate.toLocaleString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      });
+      let hours = selectedDate.getHours();
+      let minutes = selectedDate.getMinutes();
+      let seconds = selectedDate.getSeconds();
+      let format = hours >= 12 ? 'PM' : 'AM';
+
+      // Format hours
+      if (hours === 0) {
+        hours = 12;
+      } else if (hours > 12) {
+        hours -= 12;
+      }
+
+      // Add leading zeros to minutes and seconds
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      const time = `${hours}:${minutes}:${seconds} ${format}`;
 
       setMyTime(time);
       requestAnimationFrame(updateClock);
@@ -35,7 +46,7 @@ export default function Time({ weather, timecolor }) {
   return (
     <div>
       <div className="flex items-center justify-center my-6">
-        <p className={`text-[15px] sm:text-3xl font-semibold ${timecolor}`}>
+        <p className="text-[15px] sm:text-3xl font-semibold text-[#0a0a0a] bg-transparent">
           {date} ,{mytime}
         </p>
       </div>
