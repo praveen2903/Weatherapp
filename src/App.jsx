@@ -63,7 +63,7 @@ function App() {
 
   return (
       <div
-        className="app relative bg-cover bg-center min-h-[300vh] md:min-h-[120vh] w-full"
+        className="app relative bg-cover bg-center min-h-[310vh] md:min-h-[120vh] w-full"
         style={{
           backgroundImage: `url(${bg})`,
 

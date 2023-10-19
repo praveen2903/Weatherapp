@@ -89,11 +89,11 @@ function TopButtons({ setCity, top }) {
                 </button>
 
                 {toggle && (
-                    <div className={`duration-300 p-8 md:hidden font-serif left-[50%] right-0 fit-content text-white fixed overflow bg-black ${toggle ? 'left-[0]': 'left-[-100%]'}`}>
+                    <div className={`duration-300 p-8 md:hidden font-serif left-[50%] right-0 fit-content fixed overflow bg-[#fbbf24] cursor-pointer rounded-lg ${toggle ? 'left-[0]': 'left-[-100%]'}`}>
                         {cities.map((city) => (
                             <button
                                 key={city.id}
-                                className='text-white text-lg font-medium block py-2'
+                                className='text-[#1d4ed8] hover:text-[#22d3ee] text-lg font-light block py-2'
                                 onClick={() => handleCityClick(city.title)}
                             >
                                 {city.title}
